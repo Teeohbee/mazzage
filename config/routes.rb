@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :responses, except: [:show]
+
   get 'welcome/index'
   root 'welcome#index'
 
