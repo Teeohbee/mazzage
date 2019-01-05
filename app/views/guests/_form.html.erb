@@ -1,0 +1,17 @@
+<%= form_for @guest do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.radio_button :food_option, 'meat', :checked => true %>
+    <%= f.label :meat %>
+    <%= f.radio_button :food_option, 'vegetarian' %>
+    <%= f.label :vegetarian %>
+  </div>
+  <div class="form-group">
+    <%= f.label :dietary_requirements %>
+    <%= f.text_area :dietary_requirements %>
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
