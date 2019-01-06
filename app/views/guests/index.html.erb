@@ -25,7 +25,7 @@
           <td><%= guest.food_option %></td>
           <td><%= guest.dietary_requirements %></td>
           <td>
-            <%= button_to "Edit", edit_guest_path(guest) %>
+            <%= button_to "Edit", edit_guest_path(guest), method: :get %>
           </td>
           <td>
             <%= button_to "Delete", guest, method: :delete, data: { confirm: "Are you sure you wish to delete #{guest.name}?" } %>

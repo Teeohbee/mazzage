@@ -25,7 +25,7 @@ class GuestsController < ApplicationController
     @guest = Guest.find(params[:id])
 
     if @guest.update_attributes(guest_params)
-      redirect_to guests_path, notice: "#{name} has been updated!" and return
+      redirect_to guests_path, notice: "#{@guest.name} has been updated!" and return
     end
 
     render 'edit'
@@ -35,7 +35,7 @@ class GuestsController < ApplicationController
     @guest = Guest.find(params[:id])
     @guest.destroy
 
-    redirect_to guests_path, notice: "#{name} has been deleted!" and return
+    redirect_to guests_path, notice: "#{@guest.name} has been deleted!" and return
   end
 
   private
