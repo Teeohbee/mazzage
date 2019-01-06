@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <%= link_to "Welcome", pages_welcome_path %>
+    <%= link_to "RSVP", new_guest_path %>
+    <%= link_to "Accomodation", pages_accomodation_path %>
+    <%= link_to "Q&A", pages_faq_path %>
+
     <%= yield %>
     <% if flash[:notice] %>
       <div class="alert alert-success"><%= flash[:notice] %></div>
