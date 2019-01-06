@@ -11,7 +11,7 @@ class GuestsController < ApplicationController
     @guest = Guest.new(guest_params)
 
     if @guest.save
-      redirect_to welcome_index_path, notice: "The guest has been created!" and return
+      redirect_to pages_welcome_path, notice: "The guest has been created!" and return
     end
 
     render 'new'
