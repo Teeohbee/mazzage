@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'mongoid'
 gem 'bootstrap'
+gem 'jquery-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
