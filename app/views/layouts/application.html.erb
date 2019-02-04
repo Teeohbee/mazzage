@@ -9,14 +9,47 @@
   </head>
 
   <body>
-    <%= link_to "Welcome", pages_welcome_path %>
-    <%= link_to "RSVP", new_guest_path %>
-    <%= link_to "Accomodation", pages_accomodation_path %>
-    <%= link_to "Q&A", pages_faq_path %>
+    <div class="wrapper">
 
-    <%= yield %>
-    <% if flash[:notice] %>
-      <div class="alert alert-success"><%= flash[:notice] %></div>
-    <% end %>
+      <!-- Sidebar -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+          <p>Dummy Heading</p>
+          <li class="active">
+            <%= link_to "Welcome", pages_welcome_path %>
+          </li>
+          <li>
+            <%= link_to "RSVP", new_guest_path %>
+          </li>
+          <li>
+            <%= link_to "Accomodation", pages_accomodation_path %>
+          </li>
+          <li>
+            <%= link_to "Q&A", pages_faq_path %>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content -->
+      <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+              <i class="fas fa-align-left"></i>
+              <span>Toggle Sidebar</span>
+            </button>
+          </div>
+        </nav>
+        <% if flash[:notice] %>
+          <div class="alert alert-success"><%= flash[:notice] %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+
+    </div>
   </body>
 </html>
