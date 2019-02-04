@@ -19,7 +19,7 @@
 
  body {
      font-family: 'Poppins', sans-serif;
-     background: #fafafa;
+     // background: #fafafa;
  }
 
  p {
@@ -71,6 +71,7 @@
      background: #152e63;
      color: #fff;
      transition: all 0.3s;
+     border-right: thick solid gold;
  }
 
  #sidebar.active {
