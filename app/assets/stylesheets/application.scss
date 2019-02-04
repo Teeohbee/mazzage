@@ -15,6 +15,7 @@
  @import "bootstrap";
  @import "pages";
  @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+ @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
  body {
      font-family: 'Poppins', sans-serif;
@@ -35,6 +36,10 @@
      color: inherit;
      text-decoration: none;
      transition: all 0.3s;
+ }
+
+ .material-icons {
+   cursor: pointer;
  }
 
  .navbar-btn {
