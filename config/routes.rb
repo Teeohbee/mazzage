@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :guests, except: [:show]
   get 'pages/welcome'
-  get 'pages/accomodation'
+  get 'pages/accommodation'
   get 'pages/faq'
 
   root 'pages#welcome'
