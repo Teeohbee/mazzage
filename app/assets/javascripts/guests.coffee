@@ -4,7 +4,7 @@
 
 $(document).on "turbolinks:load", ->
   $('select#guest_name').select2
-    placeholder: 'Please start typing your name...'
+    placeholder: 'Please start typing...'
     # allowClear: true
     theme: "bootstrap"
     width: '100%'
