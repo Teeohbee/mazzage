@@ -14,4 +14,13 @@
 //= require jquery
 //= require turbolinks
 //= require select2
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+  })
+})

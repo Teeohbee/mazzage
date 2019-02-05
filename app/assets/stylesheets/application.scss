@@ -1,0 +1,145 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+ // Custom bootstrap variables must be set or imported *before* bootstrap.
+ @import "bootstrap";
+ @import "pages";
+ @import "select2";
+ @import "select2-bootstrap";
+ @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+ @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+ body {
+     font-family: 'Poppins', sans-serif;
+     // background: #fafafa;
+ }
+
+ p {
+     font-family: 'Poppins', sans-serif;
+     font-size: 1.1em;
+     font-weight: 300;
+     line-height: 1.7em;
+     color: #999;
+ }
+
+ a,
+ a:hover,
+ a:focus {
+     color: inherit;
+     text-decoration: none;
+     transition: all 0.3s;
+ }
+
+ .material-icons {
+   cursor: pointer;
+ }
+
+ .navbar-btn {
+     box-shadow: none;
+     outline: none !important;
+     border: none;
+ }
+
+ .line {
+     width: 100%;
+     height: 1px;
+     border-bottom: 1px dashed #ddd;
+     margin: 40px 0;
+ }
+
+ /* ---------------------------------------------------
+     SIDEBAR STYLE
+ ----------------------------------------------------- */
+
+ .wrapper {
+     display: flex;
+     width: 100%;
+     align-items: stretch;
+ }
+
+ #sidebar {
+     min-width: 250px;
+     max-width: 250px;
+     background: #152e63;
+     color: #fff;
+     transition: all 0.3s;
+     border-right: thick solid gold;
+ }
+
+ #sidebar.active {
+     margin-left: -250px;
+ }
+
+ #sidebar .sidebar-header {
+     padding: 20px;
+     background: #152e63;
+ }
+
+ #sidebar ul.components {
+     padding: 20px 0;
+ }
+
+ #sidebar ul p {
+     color: #fff;
+     padding: 10px;
+ }
+
+ #sidebar ul li a {
+     padding: 25px;
+     font-size: 1.1em;
+     display: block;
+ }
+
+ #sidebar ul li a:hover {
+     color: #152e63;
+     background: #fff;
+ }
+
+ #sidebar ul li.active>a,
+ a[aria-expanded="true"] {
+     color: #fff;
+     background: #6d7fcc;
+ }
+
+ ul ul a {
+     font-size: 0.9em !important;
+     padding-left: 30px !important;
+     background: #6d7fcc;
+ }
+
+ /* ---------------------------------------------------
+     CONTENT STYLE
+ ----------------------------------------------------- */
+
+ #content {
+     width: 100%;
+     padding: 20px;
+     min-height: 100vh;
+     transition: all 0.3s;
+ }
+
+ /* ---------------------------------------------------
+     MEDIAQUERIES
+ ----------------------------------------------------- */
+
+ @media (max-width: 768px) {
+     #sidebar {
+         margin-left: -250px;
+     }
+     #sidebar.active {
+         margin-left: 0;
+     }
+     #sidebarCollapse span {
+         display: none;
+     }
+ }
