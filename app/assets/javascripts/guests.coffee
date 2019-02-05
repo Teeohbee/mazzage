@@ -8,3 +8,12 @@ $(document).on "turbolinks:load", ->
     # allowClear: true
     theme: "bootstrap"
     width: '100%'
+
+  $(window).resize ->
+    if $(window).width() < 408
+      $('#responsive').removeClass 'btn-group'
+      $('#responsive').addClass 'btn-group-vertical'
+    else
+      $('#responsive').addClass 'btn-group'
+      $('#responsive').removeClass 'btn-group-vertical'
+    return

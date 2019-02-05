@@ -4,8 +4,8 @@
     <%= f.select :name, guest_names, include_blank: true %>
   </div>
   <div class="form-group toggle">
-    <%= f.label :attendance, "Can you attend our wedding?" %>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <%= f.label :attendance, "Are you able to attend our wedding?" %>
+    <div class="btn-group btn-group-toggle" id="responsive" data-toggle="buttons">
       <label class="btn btn-outline-info active">
         <%= f.radio_button :attendance, true, :style=>"display:none;", :checked => true %>
         Yes, I can attend
