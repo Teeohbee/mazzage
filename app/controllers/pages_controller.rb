@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def welcome
   end
 
-  def accomodation
+  def accommodation
   end
 
   def faq

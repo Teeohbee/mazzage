@@ -12,10 +12,21 @@
  *
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
+ /* -------begin customization-------- */
+ $theme-colors: (
+ primary: #152e63,
+ info: #0B5A57
+ );
+ /* -------end customization-------- */
+
  @import "bootstrap";
  @import "pages";
+ @import "guests";
+ @import "select2";
+ @import "select2-bootstrap";
  @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
  @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
 
  body {
      font-family: 'Poppins', sans-serif;
@@ -36,6 +47,14 @@
      color: inherit;
      text-decoration: none;
      transition: all 0.3s;
+ }
+
+ .card {
+   margin-bottom: 10px;
+ }
+
+ .jumbo-card {
+   width: 50%
  }
 
  .material-icons {
