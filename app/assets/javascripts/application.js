@@ -13,10 +13,9 @@
 //= require rails-ujs
 //= require jquery
 //= require turbolinks
-//= require select2
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require select2
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
