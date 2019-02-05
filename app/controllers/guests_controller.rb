@@ -10,8 +10,10 @@ class GuestsController < ApplicationController
   def create
     @guest = Guest.new(guest_params)
 
+    first_name = @guest.name.split.first
+
     if @guest.save
-      redirect_to pages_welcome_path, notice: "The guest has been created!" and return
+      redirect_to new_guest_path, notice: "Thank you #{first_name}, your RSVP has been received!" and return
     end
 
     render 'new'

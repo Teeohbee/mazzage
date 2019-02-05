@@ -27,7 +27,6 @@
  @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
  @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
-
  body {
      font-family: 'Poppins', sans-serif;
      // background: #fafafa;
@@ -54,7 +53,11 @@
  }
 
  .jumbo-card {
-   width: 50%
+   max-width: 500px
+ }
+
+ .guest-card {
+   max-width: 600px
  }
 
  .material-icons {
