@@ -5,15 +5,13 @@
 $(document).on "turbolinks:load", ->
   $('select#guest_name').select2
     placeholder: 'Please start typing...'
-    # allowClear: true
     theme: "bootstrap"
     width: '100%'
 
-  $(window).resize ->
-    if $(window).width() < 408
-      $('#responsive').removeClass 'btn-group'
-      $('#responsive').addClass 'btn-group-vertical'
-    else
-      $('#responsive').addClass 'btn-group'
-      $('#responsive').removeClass 'btn-group-vertical'
-    return
+  if $(window).width() < 408
+    $('#responsive').removeClass 'btn-group'
+    $('#responsive').addClass 'btn-group-vertical'
+  else
+    $('#responsive').addClass 'btn-group'
+    $('#responsive').removeClass 'btn-group-vertical'
+  return
