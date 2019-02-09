@@ -28,16 +28,12 @@
 
  @font-face {
   font-family: 'Avenir';
-  src: url(/assets/avenir.ttc) format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  src: font-url('avenir.ttc')
 }
 
 @font-face {
  font-family: 'Tetra';
- src: url(/assets/tetra.otf) format('truetype');
- font-weight: normal;
- font-style: normal;
+ src: font-url('tetra.otf')
 }
 
  body {
