@@ -14,8 +14,8 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  /* -------begin customization-------- */
  $theme-colors: (
- primary: #152e63,
- info: #0B5A57
+ primary: #0F1933,
+ info: #0b5a39
  );
  /* -------end customization-------- */
 
@@ -24,20 +24,32 @@
  @import "guests";
  @import "select2";
  @import "select2-bootstrap";
- @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
  @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+ @font-face {
+  font-family: 'Avenir';
+  src: url(/assets/avenir.ttc) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+ font-family: 'Tetra';
+ src: url(/assets/tetra.otf) format('truetype');
+ font-weight: normal;
+ font-style: normal;
+}
+
  body {
-     font-family: 'Poppins', sans-serif;
-     // background: #fafafa;
+     font-family: 'Avenir'
  }
 
  p {
-     font-family: 'Poppins', sans-serif;
+     font-family: 'Avenir', sans-serif;
      font-size: 1.1em;
      font-weight: 300;
      line-height: 1.7em;
-     color: #999;
+     color: #0F1933;
  }
 
  a,
@@ -46,6 +58,11 @@
      color: inherit;
      text-decoration: none;
      transition: all 0.3s;
+ }
+
+ .page_header {
+   font-family: 'Tetra';
+   font-size: 4rem;
  }
 
  .card {
