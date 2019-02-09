@@ -1,31 +1,29 @@
 <h1>Guests</h1>
-<div>
-  <%= link_to "New Guest", new_guest_path %>
-</div>
-
-<table>
-  <thead>
+<table class="table">
+  <thead class="thead-dark">
     <tr>
-      <th>Name</th>
-      <th>Attendance</th>
-      <th>Food Option</th>
-      <th>Dietary Requirements</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
+      <th scope="col">Name</th>
+      <th scope="col">Attendance</th>
+      <th scope="col">Food Option</th>
+      <th scope="col">Dietary Requirements</th>
+      <th scope="col">Message</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
     <% if @guests.size == 0 %>
-      <tr>
+      <tr scope="row">
         <td>No guests found.</td>
       </tr>
     <% else %>
       <% @guests.each do |guest| %>
-        <tr>
+        <tr scope="row">
           <td><%= guest.name %></td>
           <td><%= guest.attendance %></td>
           <td><%= guest.food_option %></td>
           <td><%= guest.dietary_requirements %></td>
+          <td><%= guest.message %></td>
           <td>
             <%= button_to "Edit", edit_guest_path(guest), method: :get %>
           </td>
