@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :guests, except: [:show]
+  resources :guests, except: [:show, :index]
+  get 'guests/backoffice'
   get 'pages/welcome'
   get 'pages/accommodation'
   get 'pages/faq'

@@ -1,5 +1,8 @@
 <%= form_for @guest do |f| %>
   <div class="form-group">
+    <% if flash[:alert] %>
+      <div class="alert alert-warning"><%= flash[:alert] %></div>
+    <% end %>
     <%= f.label :name, "What's your name?" %>
     <%= f.select :name, guest_names, include_blank: true %>
   </div>

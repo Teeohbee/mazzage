@@ -1,5 +1,5 @@
 class GuestsController < ApplicationController
-  def index
+  def backoffice
     @guests = Guest.all
   end
 
@@ -16,7 +16,7 @@ class GuestsController < ApplicationController
       redirect_to new_guest_path, notice: "Thank you #{first_name}, your RSVP has been received!" and return
     end
 
-    render 'new'
+    redirect_to new_guest_path, alert: 'The name field cannot be blank'
   end
 
   def edit
@@ -37,7 +37,7 @@ class GuestsController < ApplicationController
     @guest = Guest.find(params[:id])
     @guest.destroy
 
-    redirect_to guests_path, notice: "#{@guest.name} has been deleted!" and return
+    redirect_to guests_backoffice_path, notice: "#{@guest.name} has been deleted!" and return
   end
 
   private

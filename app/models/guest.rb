@@ -4,4 +4,6 @@ class Guest
   field :attendance, type: Boolean
   field :food_option, type: String
   field :dietary_requirements, type: String
+
+  validates :name, presence: true
 end
