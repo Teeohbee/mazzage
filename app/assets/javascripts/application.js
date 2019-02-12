@@ -19,7 +19,16 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+  // Allows sidebar to be collapsed and expanded
   $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
+  })
+
+  // Toggles all popovers on
+  $('[data-toggle="popover"]').popover()
+
+  // Allows popovers to be dismissed via loss of focus
+  $('.popover-dismiss').popover({
+    trigger: 'focus'
   })
 })
