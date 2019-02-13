@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+
   def welcome
   end
 
@@ -6,5 +7,8 @@ class PagesController < ApplicationController
   end
 
   def faq
+  end
+
+  def gallery
   end
 end
