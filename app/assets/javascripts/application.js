@@ -23,12 +23,4 @@ $(document).on('turbolinks:load', function() {
   $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
   })
-
-  // Toggles all popovers on
-  $('[data-toggle="popover"]').popover()
-
-  // Allows popovers to be dismissed via loss of focus
-  $('.popover-dismiss').popover({
-    trigger: 'focus'
-  })
 })
