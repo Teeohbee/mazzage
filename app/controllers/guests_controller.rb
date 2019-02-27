@@ -1,6 +1,10 @@
 class GuestsController < ApplicationController
   def backoffice
     @guests = Guest.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @guests.to_csv, filename: "guests-#{Date.today}.csv" }
+    end
   end
 
   def new

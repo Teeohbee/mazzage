@@ -1,6 +1,10 @@
 <h1>
-  Guests - <%= @guests.count %> Responses
+  Guests
 </h1>
+<p>
+  <%= link_to("Generate Report", guests_backoffice_path(format: :csv), class: "btn btn-success",) %>
+  Response count: <%= @guests.count %>
+</p>
 <table class="table">
   <thead class="thead-dark">
     <tr>
