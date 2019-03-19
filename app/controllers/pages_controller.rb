@@ -11,4 +11,7 @@ class PagesController < ApplicationController
 
   def gallery
   end
+
+  def gam
+  end
 end
