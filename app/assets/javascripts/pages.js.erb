@@ -7,8 +7,8 @@ $(document).on('turbolinks:load', function() {
   }
 
   function preload() {
-    this.load.image('moley', '/assets/moley.png');
-    this.load.image('moley_bg', '/assets/mole_burrow.jpg');
+    this.load.image('moley', '<%= asset_path('moley.png') %>');
+    this.load.image('moley_bg', '<%= asset_path('mole_burrow.jpg') %>');
     this.load.audio('theme', 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Tchaikovsky_-_Dance_of_the_Sugar_Plum_Fairy_-_The_Nutcracker.ogg');
   }
 
