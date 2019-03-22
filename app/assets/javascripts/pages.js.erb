@@ -1,8 +1,8 @@
 //= require ./phaser.min.js
 $(document).on('turbolinks:load', function() {
-  const urlPath = $(location).attr("pathname")
+  var urlPath = $(location).attr("pathname")
 
-  const gameState = {
+  var gameState = {
     musicPlaying: 'off'
   }
 
@@ -56,7 +56,7 @@ $(document).on('turbolinks:load', function() {
    }
   }
 
-  const config = {
+  var config = {
     parent: 'idofcontainer',
   	type: Phaser.AUTO,
   	width: 728,
