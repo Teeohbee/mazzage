@@ -7,10 +7,11 @@ $(document).on('turbolinks:load', function() {
     this.load.image('ground', "<%= asset_path('gam/platform.png') %>");
     this.load.image('star', "<%= asset_path('gam/star.png') %>");
     this.load.image('bomb', "<%= asset_path('gam/bomb.png') %>");
-    this.load.spritesheet('dude', "<%= asset_path('gam/moley.png') %>", { frameWidth: 32, frameHeight: 48 });
+    this.load.spritesheet('dude', "<%= asset_path('gam/dude.png') %>", { frameWidth: 32, frameHeight: 48 });
   }
 
   var platforms;
+  var player;
 
   function create() {
     this.add.image(400, 300, 'sky');
@@ -22,6 +23,31 @@ $(document).on('turbolinks:load', function() {
     platforms.create(600, 400, 'ground');
     platforms.create(50, 250, 'ground');
     platforms.create(750, 22, 'ground');
+
+    player = this.physics.add.sprite(100, 450, 'dude');
+
+    player.setBounce(0.2);
+    player.setCollideWorldBounds(true);
+
+    this.anims.create({
+      key: 'left',
+      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'turn',
+      frames: [ { key: 'dude', frame: 4 } ],
+      frameRate: 20
+    });
+
+    this.anims.create({
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+      frameRate: 10,
+      repeat: -1
+    });
   }
 
   function update() {
