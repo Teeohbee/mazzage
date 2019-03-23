@@ -48,6 +48,8 @@ $(document).on('turbolinks:load', function() {
       frameRate: 10,
       repeat: -1
     });
+
+    this.physics.add.collider(player, platforms);
   }
 
   function update() {
