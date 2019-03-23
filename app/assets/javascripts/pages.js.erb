@@ -3,11 +3,16 @@ $(document).on('turbolinks:load', function() {
   const urlPath = $(location).attr("pathname")
 
   function preload() {
-
+    this.load.image('sky', "<%= asset_path('gam/sky.png') %>");
+    this.load.image('ground', "<%= asset_path('gam/platform.png') %>");
+    this.load.image('star', "<%= asset_path('gam/star.png') %>");
+    this.load.image('bomb', "<%= asset_path('gam/bomb.png') %>");
+    this.load.spritesheet('dude', "<%= asset_path('gam/moley.png') %>", { frameWidth: 32, frameHeight: 48 });
   }
 
   function create() {
-
+    this.add.image(400, 300, 'sky');
+    this.add.image(400, 300, 'star');
   }
 
   function update() {
