@@ -12,6 +12,9 @@ $(document).on('turbolinks:load', function() {
 
   var platforms;
   var player;
+  var stars;
+  var score = 0;
+  var scoreText;
 
   function create() {
     this.add.image(400, 300, 'sky');
@@ -68,7 +71,12 @@ $(document).on('turbolinks:load', function() {
 
     function collectStar(player, star) {
       star.disableBody(true, true);
+
+      score += 10;
+      scoreText.setText('score: ' + score);
     }
+
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
   }
 
   function update() {
