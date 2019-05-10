@@ -2,66 +2,167 @@
 $(document).on('turbolinks:load', function() {
   const urlPath = $(location).attr("pathname")
 
-  const gameState = {
-    musicPlaying: 'off'
+  function preload() {
+    this.load.image('sky', "<%= asset_path('gam/sky.png') %>");
+    this.load.image('ground', "<%= asset_path('gam/platform.png') %>");
+    this.load.image('star', "<%= asset_path('gam/star.png') %>");
+    this.load.image('bomb', "<%= asset_path('gam/bomb.png') %>");
+    this.load.spritesheet('moley', "<%= asset_path('gam/moley.png') %>", { frameWidth: 30, frameHeight: 30 });
+    this.load.audio('theme', 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Tchaikovsky_-_Dance_of_the_Sugar_Plum_Fairy_-_The_Nutcracker.ogg');
+    this.load.audio('pickUp', "<%= asset_path('gam/pick_up.wav') %>")
+    this.load.audio('wilhelm', "<%= asset_path('gam/wilhelm.wav') %>")
+    this.load.audio('levelComplete', "<%= asset_path('gam/level_complete.wav') %>")
   }
 
-  function preload() {
-    this.load.image('moley', '<%= asset_path('moley.png') %>');
-    this.load.image('moley_bg', '<%= asset_path('mole_burrow.jpg') %>');
-    this.load.audio('theme', 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Tchaikovsky_-_Dance_of_the_Sugar_Plum_Fairy_-_The_Nutcracker.ogg');
-  }
+  var platforms;
+  var player;
+  var stars;
+  var score = 0;
+  var scoreText;
+  var bombs;
+  var musicPlaying = 0
 
   function create() {
-    this.add.image(364, 256, 'moley_bg');
-    gameState.moley = this.add.sprite(100, 300, 'moley')
-    gameState.musicText = this.add.text(650, 475, 'Music')
-    gameState.cursors = this.input.keyboard.createCursorKeys();
-    gameState.musicText.setInteractive()
-    gameState.music = this.sound.add('theme')
+    this.add.image(400, 300, 'sky');
 
-    gameState.musicText.on('pointerup', function () {
-      if (gameState.musicPlaying == 'off') {
-        gameState.music.play()
-        gameState.musicPlaying = 'on'
+    platforms = this.physics.add.staticGroup();
+
+    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
+    platforms.create(600, 400, 'ground');
+    platforms.create(50, 250, 'ground');
+    platforms.create(750, 22, 'ground');
+
+    player = this.physics.add.sprite(100, 450, 'moley');
+
+    player.setBounce(0.2);
+    player.setCollideWorldBounds(true);
+
+    this.anims.create({
+      key: 'left',
+      frames: this.anims.generateFrameNumbers('moley', { start: 0, end: 7 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'turn',
+      frames: [ { key: 'moley', frame: 8 } ],
+      frameRate: 20
+    });
+
+    this.anims.create({
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('moley', { start: 9, end: 16 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.physics.add.collider(player, platforms);
+
+    cursors = this.input.keyboard.createCursorKeys();
+
+    stars = this.physics.add.group({
+      key: 'star',
+      repeat: 11,
+      setXY: { x: 12, y: 0, stepX: 70}
+    });
+
+    stars.children.iterate(function (child) {
+      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    });
+
+    this.physics.add.collider(stars, platforms);
+    this.physics.add.overlap(player, stars, collectStar, null, this);
+
+    pickUp = this.sound.add('pickUp')
+    levelComplete = this.sound.add('levelComplete')
+
+    function collectStar(player, star) {
+      star.disableBody(true, true);
+      score += 10;
+      ((score % 120 == 0) ? levelComplete.play() : pickUp.play());
+      scoreText.setText('score: ' + score);
+
+      if (stars.countActive(true) === 0) {
+        stars.children.iterate(function (child) {
+          child.enableBody(true, child.x, 0, true, true);
+        });
+
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200,  200), 20);
+      }
+    }
+
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+    musicText = this.add.text(690, 15, 'music: off');
+    musicText.setInteractive()
+    music = this.sound.add('theme')
+
+    musicText.on('pointerup', function () {
+      if (musicPlaying == 0) {
+        music.play()
+        musicText.setText('music: on');
+        musicPlaying = 1
       } else {
-        gameState.music.stop()
-        gameState.musicPlaying = 'off'
+        music.stop()
+        musicText.setText('music: off');
+        musicPlaying = 0
       }
     })
+
+    bombs = this.physics.add.group();
+
+    this.physics.add.collider(bombs, platforms);
+    this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+    gameOverSound = this.sound.add('wilhelm')
+
+    function hitBomb(player, bomb) {
+      gameOverSound.play();
+      this.physics.pause();
+      player.setTint(0xff0000);
+      player.anims.play('turn');
+      gameOver = true;
+    }
   }
 
   function update() {
-    // Update based on keypress here!
-   if (gameState.cursors.right.isDown) {
-     if(gameState.moley.flipX == true) {
-       gameState.moley.x += 5;
-     } else {
-       gameState.moley.toggleFlipX();
-       gameState.moley.x += 5;
-     }
-   }
-   if (gameState.cursors.left.isDown) {
-     if(gameState.moley.flipX == false) {
-       gameState.moley.x -= 5;
-     } else {
-       gameState.moley.toggleFlipX();
-       gameState.moley.x -= 5;
-     } }
-   if (gameState.cursors.up.isDown) {
-     gameState.moley.y -= 5;
-   }
-   if (gameState.cursors.down.isDown) {
-     gameState.moley.y += 5;
-   }
+    if (cursors.left.isDown) {
+      player.setVelocityX(-160);
+      player.anims.play('left', true);
+    }
+    else if (cursors.right.isDown) {
+      player.setVelocityX(160);
+      player.anims.play('right', true);
+    } else {
+      player.setVelocityX(0);
+      player.anims.play('turn', true);
+    }
+
+    if (cursors.up.isDown && player.body.touching.down) {
+      player.setVelocityY(-330);
+    }
+
   }
 
   const config = {
     parent: 'idofcontainer',
   	type: Phaser.AUTO,
-  	width: 728,
-  	height: 512,
-  	backgroundColor: "#5f2a55",
+  	width: 800,
+  	height: 600,
+    physics: {
+      default: 'arcade',
+      arcade: {
+        gravity: { y: 300 },
+        debug: false
+      }
+    },
   	scene: {
       preload,
       create,
