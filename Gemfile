@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'mongoid'
 gem "select2-rails"
-gem 'bootstrap'
+gem "bootstrap", ">= 4.3.1"
 gem 'jquery-rails'
 
 # Use Capistrano for deployment
