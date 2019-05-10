@@ -8,6 +8,10 @@ $(document).on('turbolinks:load', function() {
     this.load.image('star', "<%= asset_path('gam/star.png') %>");
     this.load.image('bomb', "<%= asset_path('gam/bomb.png') %>");
     this.load.spritesheet('moley', "<%= asset_path('gam/moley.png') %>", { frameWidth: 30, frameHeight: 30 });
+    this.load.audio('theme', 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Tchaikovsky_-_Dance_of_the_Sugar_Plum_Fairy_-_The_Nutcracker.ogg');
+    this.load.audio('pickUp', "<%= asset_path('gam/pick_up.wav') %>")
+    this.load.audio('wilhelm', "<%= asset_path('gam/wilhelm.wav') %>")
+    this.load.audio('levelComplete', "<%= asset_path('gam/level_complete.wav') %>")
   }
 
   var platforms;
@@ -16,6 +20,7 @@ $(document).on('turbolinks:load', function() {
   var score = 0;
   var scoreText;
   var bombs;
+  var musicPlaying = 0
 
   function create() {
     this.add.image(400, 300, 'sky');
@@ -70,10 +75,13 @@ $(document).on('turbolinks:load', function() {
     this.physics.add.collider(stars, platforms);
     this.physics.add.overlap(player, stars, collectStar, null, this);
 
+    pickUp = this.sound.add('pickUp')
+    levelComplete = this.sound.add('levelComplete')
+
     function collectStar(player, star) {
       star.disableBody(true, true);
-
       score += 10;
+      ((score % 120 == 0) ? levelComplete.play() : pickUp.play());
       scoreText.setText('score: ' + score);
 
       if (stars.countActive(true) === 0) {
@@ -92,12 +100,31 @@ $(document).on('turbolinks:load', function() {
 
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
+    musicText = this.add.text(690, 15, 'music: off');
+    musicText.setInteractive()
+    music = this.sound.add('theme')
+
+    musicText.on('pointerup', function () {
+      if (musicPlaying == 0) {
+        music.play()
+        musicText.setText('music: on');
+        musicPlaying = 1
+      } else {
+        music.stop()
+        musicText.setText('music: off');
+        musicPlaying = 0
+      }
+    })
+
     bombs = this.physics.add.group();
 
     this.physics.add.collider(bombs, platforms);
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 
+    gameOverSound = this.sound.add('wilhelm')
+
     function hitBomb(player, bomb) {
+      gameOverSound.play();
       this.physics.pause();
       player.setTint(0xff0000);
       player.anims.play('turn');
