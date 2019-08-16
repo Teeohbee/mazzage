@@ -9,9 +9,6 @@ class PagesController < ApplicationController
   def faq
   end
 
-  def gallery
-  end
-
   def gam
   end
 end
