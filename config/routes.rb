@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get 'pages/welcome'
   get 'pages/accommodation'
   get 'pages/faq'
-  get 'pages/gallery'
   get 'pages/gam'
 
   root 'pages#welcome'
